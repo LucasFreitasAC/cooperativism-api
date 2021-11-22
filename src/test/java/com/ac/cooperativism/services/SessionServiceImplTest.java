@@ -1,16 +1,16 @@
 package com.ac.cooperativism.services;
 
-import com.ac.cooperativism.api.assembler.SessionInputDisassembler;
-import com.ac.cooperativism.api.assembler.SessionModelAssembler;
-import com.ac.cooperativism.api.model.SessionModel;
-import com.ac.cooperativism.api.model.input.SessionInput;
-import com.ac.cooperativism.domain.exception.BusinessException;
-import com.ac.cooperativism.domain.exception.SessionNotFoundException;
-import com.ac.cooperativism.domain.model.Session;
-import com.ac.cooperativism.domain.model.Topic;
-import com.ac.cooperativism.domain.repository.SessionRepository;
-import com.ac.cooperativism.domain.service.impl.SessionServiceImpl;
-import com.ac.cooperativism.domain.service.impl.TopicServiceImpl;
+import com.ac.cooperativism.v1.api.assembler.SessionInputDisassembler;
+import com.ac.cooperativism.v1.api.assembler.SessionModelAssembler;
+import com.ac.cooperativism.v1.api.model.SessionModel;
+import com.ac.cooperativism.v1.api.model.input.SessionInput;
+import com.ac.cooperativism.v1.domain.exception.BusinessException;
+import com.ac.cooperativism.v1.domain.exception.SessionNotFoundException;
+import com.ac.cooperativism.v1.domain.model.Session;
+import com.ac.cooperativism.v1.domain.model.Topic;
+import com.ac.cooperativism.v1.domain.repository.SessionRepository;
+import com.ac.cooperativism.v1.domain.service.impl.SessionServiceImpl;
+import com.ac.cooperativism.v1.domain.service.impl.TopicServiceImpl;
 import com.ac.cooperativism.utils.TestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -133,7 +133,7 @@ public class SessionServiceImplTest {
     }
 
     @Test
-    public void getSessionNotFoundExceptionWhenDontExistsSession() {
+    public void getSessionNotFoundExceptionWhenNotFoundSession() {
         //given
         Long sessionId = 1L;
         String expectedMessage = String.format("There is no session registration with the code %d", sessionId);

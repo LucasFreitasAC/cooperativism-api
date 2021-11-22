@@ -1,8 +1,7 @@
 package com.ac.cooperativism.exceptionhandler;
 
-import com.ac.cooperativism.core.validation.ValidationException;
-import com.ac.cooperativism.domain.exception.BusinessException;
-import com.ac.cooperativism.domain.exception.EntityNotFoundException;
+import com.ac.cooperativism.v1.domain.exception.BusinessException;
+import com.ac.cooperativism.v1.domain.exception.EntityNotFoundException;
 import com.fasterxml.jackson.databind.JsonMappingException.Reference;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.PropertyBindingException;
@@ -160,12 +159,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
 
         return handleExceptionInternal(ex, problem, headers, status, request);
-    }
-
-    @ExceptionHandler({ValidationException.class})
-    public ResponseEntity<Object> handleValidation(ValidationException ex, WebRequest request) {
-        return handleValidationInternal(ex, ex.getBindingResult(), new HttpHeaders(),
-                HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
