@@ -1,13 +1,15 @@
 package com.ac.cooperativism.api.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import java.time.OffsetDateTime;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SessionModel {
 
     private Long id;

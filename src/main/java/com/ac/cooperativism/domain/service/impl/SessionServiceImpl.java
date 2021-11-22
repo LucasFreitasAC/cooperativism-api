@@ -38,7 +38,6 @@ public class SessionServiceImpl implements SessionService {
 
     public SessionModel create(SessionInput sessionInput) {
         Session sessionToSave = sessionInputDisassembler.toDomainObject(sessionInput);
-        sessionToSave.setCloseDate(sessionToSave.getCloseDate());
 
         Long topicId = sessionToSave.getTopic().getId();
         Topic topic = topicService.searchOrFail(topicId);

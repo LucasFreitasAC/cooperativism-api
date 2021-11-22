@@ -14,7 +14,7 @@ CREATE TABLE `cooperativism_db`.`sessions` (
   CONSTRAINT `FK68ua4g485vc71jtyogqadf8r4` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE `cooperativism_db`.`vote` (
+CREATE TABLE `cooperativism_db`.`votes` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `document` varchar(255) NOT NULL,
   `vote` bit(1) NOT NULL,

@@ -1,15 +1,17 @@
 package com.ac.cooperativism.domain.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "vote")
+@Table(name = "votes")
 public class Vote {
 
     @Id

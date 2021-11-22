@@ -1,12 +1,12 @@
 package com.ac.cooperativism.api.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CountVoteModel {
 
     private TopicModel topic;
