@@ -56,25 +56,6 @@ public class VoteControllerIT {
     }
 
     @Test
-    public void mustReturnStatus400WhenUserUnable() throws Exception {
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-
-        Vote vote = TestUtil.buildVoteToSave();
-        vote.setDocument("143-243-987-78");
-
-        given()
-                .pathParam("document", "143-243-987-78")
-                .body(objectMapper.writeValueAsString(vote))
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-        .when()
-                .post("/{document}")
-        .then()
-                .statusCode(HttpStatus.BAD_REQUEST.value())
-                .body("detail", equalTo(String.format("Document %s is not available for voting", "143-243-987-78")));
-    }
-
-    @Test
     public void mustReturnStatus400WhenSomeFieldIsNull() throws Exception {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 

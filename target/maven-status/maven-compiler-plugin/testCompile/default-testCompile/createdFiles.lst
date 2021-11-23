@@ -1,4 +1,8 @@
+com/ac/cooperativism/v1/controller/SessionControllerIT.class
 com/ac/cooperativism/v1/services/SessionServiceImplTest.class
+com/ac/cooperativism/v1/utils/DatabaseCleaner.class
+com/ac/cooperativism/v1/utils/TestUtil.class
 com/ac/cooperativism/v1/services/VoteServiceImplTest.class
+com/ac/cooperativism/v1/controller/TopicControllerIT.class
 com/ac/cooperativism/v1/services/TopicServiceImplTest.class
-com/ac/cooperativism/v1/utils/TestUtils.class
+com/ac/cooperativism/v1/controller/VoteControllerIT.class

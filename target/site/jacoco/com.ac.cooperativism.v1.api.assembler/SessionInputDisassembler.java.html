@@ -12,12 +12,12 @@ public class SessionInputDisassembler {
     private ModelMapper modelMapper;
 
     @Autowired
-<span class="nc" id="L15">    public SessionInputDisassembler(ModelMapper modelMapper) {</span>
-<span class="nc" id="L16">        this.modelMapper = modelMapper;</span>
-<span class="nc" id="L17">    }</span>
+<span class="fc" id="L15">    public SessionInputDisassembler(ModelMapper modelMapper) {</span>
+<span class="fc" id="L16">        this.modelMapper = modelMapper;</span>
+<span class="fc" id="L17">    }</span>
 
     public Session toDomainObject(SessionInput sessionInput) {
-<span class="nc" id="L20">        return modelMapper.map(sessionInput, Session.class);</span>
+<span class="fc" id="L20">        return modelMapper.map(sessionInput, Session.class);</span>
     }
 
     public void copyToDomainObject(SessionInput sessionInput, Session session) {

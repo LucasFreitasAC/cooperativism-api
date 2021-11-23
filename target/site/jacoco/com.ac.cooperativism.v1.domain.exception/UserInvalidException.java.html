@@ -4,12 +4,8 @@ public class UserInvalidException extends BusinessException {
 
     private static final long serialVersionUID = 1L;
 
-    public UserInvalidException(String mensagem) {
-<span class="fc" id="L8">        super(mensagem);</span>
+    public UserInvalidException(String document) {
+<span class="fc" id="L8">        super(String.format(&quot;Document %s is not available for voting&quot;, document));</span>
 <span class="fc" id="L9">    }</span>
-
-    public UserInvalidException(Long document) {
-<span class="fc" id="L12">        this(String.format(&quot;Document %d is not available for voting&quot;, document));</span>
-<span class="fc" id="L13">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

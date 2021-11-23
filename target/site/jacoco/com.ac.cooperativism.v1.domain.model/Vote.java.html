@@ -8,7 +8,7 @@ import java.util.Objects;
 @Getter
 <span class="pc" id="L9">@Setter</span>
 <span class="pc" id="L10">@Builder</span>
-<span class="nc" id="L11">@NoArgsConstructor</span>
+<span class="fc" id="L11">@NoArgsConstructor</span>
 <span class="fc" id="L12">@AllArgsConstructor</span>
 @Entity
 @Table(name = &quot;votes&quot;)
@@ -16,17 +16,17 @@ public class Vote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="nc" id="L19">    private Long id;</span>
+<span class="fc" id="L19">    private Long id;</span>
 
     @ManyToOne
     @JoinColumn(name = &quot;topic_id&quot;, nullable = false)
 <span class="fc" id="L23">    private Topic topic;</span>
 
     @Column(nullable = false)
-<span class="nc" id="L26">    private Long document;</span>
+<span class="fc" id="L26">    private String document;</span>
 
     @Column(nullable = false)
-<span class="nc" id="L29">    private Boolean vote;</span>
+<span class="fc" id="L29">    private Boolean vote;</span>
 
     @Override
     public boolean equals(Object o) {

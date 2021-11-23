@@ -29,9 +29,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-<span class="nc" id="L32">@Slf4j</span>
+<span class="fc" id="L32">@Slf4j</span>
 @ControllerAdvice
-<span class="nc" id="L34">public class ApiExceptionHandler extends ResponseEntityExceptionHandler {</span>
+<span class="fc" id="L34">public class ApiExceptionHandler extends ResponseEntityExceptionHandler {</span>
 
     public static final String MSG_END_USER_GENERIC_ERROR = &quot;An unexpected internal system error has occurred. Please try again &quot;
             + &quot;and if the problem persists, contact your system administrator.&quot;;
@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
     @Override
     protected ResponseEntity&lt;Object&gt; handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
-<span class="nc" id="L45">        return handleValidationInternal(ex, ex.getBindingResult(), headers, status, request);</span>
+<span class="fc" id="L45">        return handleValidationInternal(ex, ex.getBindingResult(), headers, status, request);</span>
     }
 
     @ExceptionHandler(Exception.class)
@@ -134,35 +134,35 @@ import java.util.stream.Collectors;
     private ResponseEntity&lt;Object&gt; handleValidationInternal(Exception ex, BindingResult bindingResult, HttpHeaders headers,
                                                             HttpStatus status, WebRequest request) {
 
-<span class="nc" id="L137">        String detail = &quot;One or more fields are invalid. Fill it in correctly and try again.&quot;;</span>
+<span class="fc" id="L137">        String detail = &quot;One or more fields are invalid. Fill it in correctly and try again.&quot;;</span>
 
-<span class="nc" id="L139">        List&lt;Problem.Object&gt; problemObjects = bindingResult.getAllErrors().stream()</span>
-<span class="nc" id="L140">                .map(objectError -&gt; {</span>
-<span class="nc" id="L141">                    String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());</span>
+<span class="fc" id="L139">        List&lt;Problem.Object&gt; problemObjects = bindingResult.getAllErrors().stream()</span>
+<span class="fc" id="L140">                .map(objectError -&gt; {</span>
+<span class="fc" id="L141">                    String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());</span>
 
-<span class="nc" id="L143">                    String name = objectError.getObjectName();</span>
+<span class="fc" id="L143">                    String name = objectError.getObjectName();</span>
 
-<span class="nc bnc" id="L145" title="All 2 branches missed.">                    if (objectError instanceof FieldError) {</span>
-<span class="nc" id="L146">                        name = ((FieldError) objectError).getField();</span>
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">                    if (objectError instanceof FieldError) {</span>
+<span class="fc" id="L146">                        name = ((FieldError) objectError).getField();</span>
                     }
 
-<span class="nc" id="L149">                    return Problem.Object.builder()</span>
-<span class="nc" id="L150">                            .name(name)</span>
-<span class="nc" id="L151">                            .userMessage(message)</span>
-<span class="nc" id="L152">                            .build();</span>
+<span class="fc" id="L149">                    return Problem.Object.builder()</span>
+<span class="fc" id="L150">                            .name(name)</span>
+<span class="fc" id="L151">                            .userMessage(message)</span>
+<span class="fc" id="L152">                            .build();</span>
                 })
-<span class="nc" id="L154">                .collect(Collectors.toList());</span>
+<span class="fc" id="L154">                .collect(Collectors.toList());</span>
 
-<span class="nc" id="L156">        Problem problem = createProblemBuilder(status, detail)</span>
-<span class="nc" id="L157">                .userMessage(detail)</span>
-<span class="nc" id="L158">                .objects(problemObjects)</span>
-<span class="nc" id="L159">                .build();</span>
+<span class="fc" id="L156">        Problem problem = createProblemBuilder(status, detail)</span>
+<span class="fc" id="L157">                .userMessage(detail)</span>
+<span class="fc" id="L158">                .objects(problemObjects)</span>
+<span class="fc" id="L159">                .build();</span>
 
-<span class="nc" id="L161">        return handleExceptionInternal(ex, problem, headers, status, request);</span>
+<span class="fc" id="L161">        return handleExceptionInternal(ex, problem, headers, status, request);</span>
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity&lt;?&gt; handleEntityNotFound(EntityNotFoundException ex, WebRequest request) {
+    public ResponseEntity handleEntityNotFound(EntityNotFoundException ex, WebRequest request) {
 
 <span class="nc" id="L167">        HttpStatus status = HttpStatus.NOT_FOUND;</span>
 <span class="nc" id="L168">        String detail = ex.getMessage();</span>
@@ -173,31 +173,31 @@ import java.util.stream.Collectors;
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity&lt;?&gt; handleBusiness(BusinessException ex, WebRequest request) {
+    public ResponseEntity handleBusiness(BusinessException ex, WebRequest request) {
 
-<span class="nc" id="L178">        HttpStatus status = HttpStatus.BAD_REQUEST;</span>
-<span class="nc" id="L179">        String detail = ex.getMessage();</span>
+<span class="fc" id="L178">        HttpStatus status = HttpStatus.BAD_REQUEST;</span>
+<span class="fc" id="L179">        String detail = ex.getMessage();</span>
 
-<span class="nc" id="L181">        Problem problem = createProblemBuilder(status, detail).userMessage(detail).build();</span>
+<span class="fc" id="L181">        Problem problem = createProblemBuilder(status, detail).userMessage(detail).build();</span>
 
-<span class="nc" id="L183">        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);</span>
+<span class="fc" id="L183">        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);</span>
     }
 
     @Override
     protected ResponseEntity&lt;Object&gt; handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
                                                              HttpStatus status, WebRequest request) {
 
-<span class="nc bnc" id="L190" title="All 4 branches missed.">        if (body == null || (body instanceof String)) {</span>
+<span class="pc bpc" id="L190" title="2 of 4 branches missed.">        if (body == null || (body instanceof String)) {</span>
 <span class="nc" id="L191">            body = Problem.builder().timestamp(OffsetDateTime.now())</span>
 <span class="nc" id="L192">                    .status(status.value()).userMessage(MSG_END_USER_GENERIC_ERROR).build();</span>
         }
 
-<span class="nc" id="L195">        return super.handleExceptionInternal(ex, body, headers, status, request);</span>
+<span class="fc" id="L195">        return super.handleExceptionInternal(ex, body, headers, status, request);</span>
     }
 
     private Problem.ProblemBuilder createProblemBuilder(HttpStatus status, String detail) {
 
-<span class="nc" id="L200">        return Problem.builder().timestamp(OffsetDateTime.now()).status(status.value()).detail(detail);</span>
+<span class="fc" id="L200">        return Problem.builder().timestamp(OffsetDateTime.now()).status(status.value()).detail(detail);</span>
     }
 
     private String joinPath(List&lt;Reference&gt; references) {

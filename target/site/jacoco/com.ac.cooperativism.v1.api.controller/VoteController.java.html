@@ -19,9 +19,9 @@ public class VoteController {
 
     private VoteService voteService;
 
-<span class="nc" id="L22">    public VoteController(VoteService voteService) {</span>
-<span class="nc" id="L23">        this.voteService = voteService;</span>
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L22">    public VoteController(VoteService voteService) {</span>
+<span class="fc" id="L23">        this.voteService = voteService;</span>
+<span class="fc" id="L24">    }</span>
 
     @ApiOperation(&quot;Create a vote&quot;)
     @ResponseStatus(HttpStatus.CREATED)
@@ -30,7 +30,7 @@ public class VoteController {
     })
     @PostMapping(&quot;/{document}&quot;)
     public VoteModel create(@ApiParam(value = &quot;Membership Document&quot;, example = &quot;12334587632&quot;)
-                            @PathVariable Long document,
+                            @PathVariable String document,
                             @ApiParam(name = &quot;body&quot;, value = &quot;Representation of a vote&quot;)
                             @RequestBody @Valid VoteInput voteInput) {
 <span class="nc" id="L36">        return voteService.create(document, voteInput);</span>

@@ -12,12 +12,12 @@ public class VoteInputDisassembler {
     private ModelMapper modelMapper;
 
     @Autowired
-<span class="nc" id="L15">    public VoteInputDisassembler(ModelMapper modelMapper) {</span>
-<span class="nc" id="L16">        this.modelMapper = modelMapper;</span>
-<span class="nc" id="L17">    }</span>
+<span class="fc" id="L15">    public VoteInputDisassembler(ModelMapper modelMapper) {</span>
+<span class="fc" id="L16">        this.modelMapper = modelMapper;</span>
+<span class="fc" id="L17">    }</span>
 
     public Vote toDomainObject(VoteInput voteInput) {
-<span class="nc" id="L20">        return modelMapper.map(voteInput, Vote.class);</span>
+<span class="fc" id="L20">        return modelMapper.map(voteInput, Vote.class);</span>
     }
 
     public void copyToDomainObject(VoteInput voteInput, Vote vote) {

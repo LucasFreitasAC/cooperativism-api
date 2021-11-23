@@ -37,7 +37,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     public Topic searchOrFail(Long topicId) {
-<span class="nc" id="L40">        return topicRepository.findById(topicId).orElseThrow(() -&gt; {</span>
+<span class="fc" id="L40">        return topicRepository.findById(topicId).orElseThrow(() -&gt; {</span>
 <span class="nc" id="L41">            log.error(&quot;There is no topic created with this code: {}&quot;, topicId);</span>
 <span class="nc" id="L42">            throw new TopicNotFoundException(topicId);</span>
         });

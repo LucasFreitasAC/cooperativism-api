@@ -1,7 +1,6 @@
 package com.ac.cooperativism.v1.controller;
 
 import com.ac.cooperativism.v1.domain.model.Session;
-import com.ac.cooperativism.v1.domain.model.Topic;
 import com.ac.cooperativism.v1.domain.repository.SessionRepository;
 import com.ac.cooperativism.v1.domain.repository.TopicRepository;
 import com.ac.cooperativism.v1.utils.DatabaseCleaner;
@@ -85,6 +84,5 @@ public class SessionControllerIT {
 
     private void prepareData() {
         topicRepository.saveAll(TestUtil.populateTopicTable());
-        sessionRepository.saveAll(TestUtil.populateSessionTable());
     }
 }

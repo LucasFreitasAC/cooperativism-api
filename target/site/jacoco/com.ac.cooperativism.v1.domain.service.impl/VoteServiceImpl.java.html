@@ -51,7 +51,7 @@ public class VoteServiceImpl implements VoteService {
 <span class="fc" id="L51">        this.userService = userService;</span>
 <span class="fc" id="L52">    }</span>
 
-    public VoteModel create(Long document, VoteInput voteInput) {
+    public VoteModel create(String document, VoteInput voteInput) {
 <span class="fc" id="L55">        Vote voteToSave = voteInputDisassembler.toDomainObject(voteInput);</span>
 <span class="fc" id="L56">        Vote alreadyVoted = voteRepository.findByTopicAndDocument(voteToSave.getTopic(), document);</span>
 

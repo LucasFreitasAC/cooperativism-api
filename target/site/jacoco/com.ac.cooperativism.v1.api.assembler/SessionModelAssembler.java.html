@@ -15,12 +15,12 @@ public class SessionModelAssembler {
     private ModelMapper modelMapper;
 
     @Autowired
-<span class="nc" id="L18">    public SessionModelAssembler(ModelMapper modelMapper) {</span>
-<span class="nc" id="L19">        this.modelMapper = modelMapper;</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L18">    public SessionModelAssembler(ModelMapper modelMapper) {</span>
+<span class="fc" id="L19">        this.modelMapper = modelMapper;</span>
+<span class="fc" id="L20">    }</span>
 
     public SessionModel toModel(Session session) {
-<span class="nc" id="L23">        return modelMapper.map(session, SessionModel.class);</span>
+<span class="fc" id="L23">        return modelMapper.map(session, SessionModel.class);</span>
     }
 
     public List&lt;SessionModel&gt; toCollectionModel(List&lt;Session&gt; sessions) {

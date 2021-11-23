@@ -4,12 +4,8 @@ public class UserNotFoundException extends EntityNotFoundException {
 
     private static final long serialVersionUID = 1L;
 
-    public UserNotFoundException(String mensagem) {
-<span class="nc" id="L8">        super(mensagem);</span>
+    public UserNotFoundException(String document) {
+<span class="nc" id="L8">        super(String.format(&quot;User with document %s not found&quot;, document));</span>
 <span class="nc" id="L9">    }</span>
-
-    public UserNotFoundException(Long document) {
-<span class="nc" id="L12">        this(String.format(&quot;User with document %d not found&quot;, document));</span>
-<span class="nc" id="L13">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

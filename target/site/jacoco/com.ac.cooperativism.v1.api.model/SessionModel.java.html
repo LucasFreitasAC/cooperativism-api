@@ -6,20 +6,20 @@ import javax.persistence.Column;
 import java.time.OffsetDateTime;
 
 @Getter
-<span class="nc" id="L9">@Setter</span>
+<span class="fc" id="L9">@Setter</span>
 <span class="pc" id="L10">@Builder</span>
-<span class="nc" id="L11">@NoArgsConstructor</span>
+<span class="fc" id="L11">@NoArgsConstructor</span>
 <span class="fc" id="L12">@AllArgsConstructor</span>
 public class SessionModel {
 
 <span class="fc" id="L15">    private Long id;</span>
 
     @Column(columnDefinition = &quot;datetime&quot;)
-<span class="nc" id="L18">    private OffsetDateTime openDate;</span>
+<span class="fc" id="L18">    private OffsetDateTime openDate;</span>
 
     @Column(columnDefinition = &quot;datetime&quot;)
 <span class="fc" id="L21">    private OffsetDateTime closeDate;</span>
 
-<span class="nc" id="L23">    private TopicModel topic;</span>
+<span class="fc" id="L23">    private TopicModel topic;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -26,6 +26,7 @@ com/ac/cooperativism/v1/domain/service/TopicService.class
 com/ac/cooperativism/v1/api/assembler/SessionInputDisassembler.class
 com/ac/cooperativism/v1/domain/service/impl/VoteServiceImpl.class
 com/ac/cooperativism/v1/domain/exception/CloseDateException.class
+com/ac/cooperativism/v1/api/model/SendCountVoteModel.class
 com/ac/cooperativism/v1/domain/exception/UserNotFoundException.class
 com/ac/cooperativism/v1/api/model/input/SessionInput.class
 com/ac/cooperativism/v1/api/assembler/VoteModelAssembler.class
@@ -37,6 +38,7 @@ com/ac/cooperativism/v1/domain/model/Session.class
 com/ac/cooperativism/exceptionhandler/Problem$Object.class
 com/ac/cooperativism/exceptionhandler/ApiExceptionHandler.class
 com/ac/cooperativism/v1/domain/service/VoteService.class
+com/ac/cooperativism/v1/api/model/SendCountVoteModel$SendCountVoteModelBuilder.class
 com/ac/cooperativism/v1/api/model/input/TopicIdInput$TopicIdInputBuilder.class
 com/ac/cooperativism/v1/core/openapi/SpringFoxConfig.class
 com/ac/cooperativism/v1/api/model/CountVoteModel.class

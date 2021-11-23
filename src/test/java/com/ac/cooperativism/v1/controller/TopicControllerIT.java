@@ -4,11 +4,9 @@ import com.ac.cooperativism.v1.domain.model.Topic;
 import com.ac.cooperativism.v1.domain.repository.TopicRepository;
 import com.ac.cooperativism.v1.utils.DatabaseCleaner;
 import com.ac.cooperativism.v1.utils.TestUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.hamcrest.Matcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,9 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Arrays;
-
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 @ExtendWith(SpringExtension.class)
@@ -48,7 +44,6 @@ public class TopicControllerIT {
         RestAssured.basePath = "/v1/topics";
 
         databaseCleaner.clearTables();
-        prepareData();
     }
 
     @Test
@@ -81,9 +76,5 @@ public class TopicControllerIT {
         .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .body("detail", equalTo("One or more fields are invalid. Fill it in correctly and try again."));
-    }
-
-    private void prepareData() {
-        topicRepository.saveAll(TestUtil.populateTopicTable());
     }
 }

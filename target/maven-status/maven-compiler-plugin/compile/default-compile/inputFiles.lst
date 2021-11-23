@@ -40,6 +40,7 @@
 /Users/lucas.freitas/Documents/workspace/Avaliação técnica Sicredi/github/cooperativism-api/src/main/java/com/ac/cooperativism/v1/domain/service/SessionService.java
 /Users/lucas.freitas/Documents/workspace/Avaliação técnica Sicredi/github/cooperativism-api/src/main/java/com/ac/cooperativism/v1/domain/exception/BusinessException.java
 /Users/lucas.freitas/Documents/workspace/Avaliação técnica Sicredi/github/cooperativism-api/src/main/java/com/ac/cooperativism/v1/api/assembler/SessionModelAssembler.java
+/Users/lucas.freitas/Documents/workspace/Avaliação técnica Sicredi/github/cooperativism-api/src/main/java/com/ac/cooperativism/v1/api/model/SendCountVoteModel.java
 /Users/lucas.freitas/Documents/workspace/Avaliação técnica Sicredi/github/cooperativism-api/src/main/java/com/ac/cooperativism/v1/consumers/VoteConsumer.java
 /Users/lucas.freitas/Documents/workspace/Avaliação técnica Sicredi/github/cooperativism-api/src/main/java/com/ac/cooperativism/v1/core/configuration/VoteConfiguration.java
 /Users/lucas.freitas/Documents/workspace/Avaliação técnica Sicredi/github/cooperativism-api/src/main/java/com/ac/cooperativism/v1/domain/repository/SessionRepository.java

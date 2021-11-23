@@ -12,12 +12,12 @@ public class TopicInputDisassembler {
     private ModelMapper modelMapper;
 
     @Autowired
-<span class="nc" id="L15">    public TopicInputDisassembler(ModelMapper modelMapper) {</span>
-<span class="nc" id="L16">        this.modelMapper = modelMapper;</span>
-<span class="nc" id="L17">    }</span>
+<span class="fc" id="L15">    public TopicInputDisassembler(ModelMapper modelMapper) {</span>
+<span class="fc" id="L16">        this.modelMapper = modelMapper;</span>
+<span class="fc" id="L17">    }</span>
 
     public Topic toDomainObject(TopicInput topicInput) {
-<span class="nc" id="L20">        return modelMapper.map(topicInput, Topic.class);</span>
+<span class="fc" id="L20">        return modelMapper.map(topicInput, Topic.class);</span>
     }
 
     public void copyToDomainObject(TopicInput topicInput, Topic topic) {

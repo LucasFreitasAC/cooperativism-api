@@ -8,8 +8,8 @@ public class AlreadyVotedException extends BusinessException {
 <span class="fc" id="L8">        super(mensagem);</span>
 <span class="fc" id="L9">    }</span>
 
-    public AlreadyVotedException(Long document, Long topicId) {
-<span class="fc" id="L12">        this(String.format(&quot;The associate with document %d has already voted for topic %d&quot;, document, topicId));</span>
+    public AlreadyVotedException(String document, Long topicId) {
+<span class="fc" id="L12">        this(String.format(&quot;The associate with document %s has already voted for topic %d&quot;, document, topicId));</span>
 <span class="fc" id="L13">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
