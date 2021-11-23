@@ -1,5 +1,6 @@
 package com.ac.cooperativism.v1.consumers;
 
+import com.ac.cooperativism.v1.api.model.SendCountVoteModel;
 import com.ac.cooperativism.v1.core.configuration.VoteConfiguration;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class VoteProducer {
         this.voteConfiguration = voteConfiguration;
     }
 
-    public void sendMessage(String message) {
-        rabbitTemplate.convertAndSend(voteConfiguration.getExchange(), voteConfiguration.getRouting(), message);
+    public void sendMessage(SendCountVoteModel sendCountVoteModel) {
+        rabbitTemplate.convertAndSend(voteConfiguration.getExchange(), voteConfiguration.getRouting(), sendCountVoteModel);
     }
 }

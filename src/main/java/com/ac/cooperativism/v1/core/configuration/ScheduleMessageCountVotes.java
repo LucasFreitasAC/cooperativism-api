@@ -1,11 +1,10 @@
 package com.ac.cooperativism.v1.core.configuration;
 
+import com.ac.cooperativism.v1.api.model.SendCountVoteModel;
 import com.ac.cooperativism.v1.consumers.VoteProducer;
 import com.ac.cooperativism.v1.domain.model.Session;
-import com.ac.cooperativism.v1.domain.model.Vote;
 import com.ac.cooperativism.v1.domain.repository.VoteRepository;
 import com.ac.cooperativism.v1.domain.service.SessionService;
-import com.ac.cooperativism.v1.domain.service.VoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -37,8 +36,14 @@ public class ScheduleMessageCountVotes {
         sessions.forEach(session -> {
             Long voteNo = voteRepository.countByTopicAndVoteFalse(session.getTopic());
             Long voteYes = voteRepository.countByTopicAndVoteTrue(session.getTopic());
-            String message = String.format("Session for topic %d ended with %d votes in favor and %d votes against", session.getTopic().getId(), voteYes, voteNo);
-            voteProducer.sendMessage(message);
+
+            SendCountVoteModel build = SendCountVoteModel.builder()
+                    .topicId(session.getTopic().getId())
+                    .voteNo(voteNo)
+                    .voteYes(voteYes)
+                    .build();
+
+            voteProducer.sendMessage(build);
         });
         log.info("Close Sechduled");
     }
