@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TopicController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cooperativism-api</a> &gt; <a href="index.source.html" class="el_package">com.ac.cooperativism.v1.api.controller</a> &gt; <span class="el_source">TopicController.java</span></div><h1>TopicController.java</h1><pre class="source lang-java linenums">package com.ac.cooperativism.v1.api.controller;
+
+import com.ac.cooperativism.v1.api.model.TopicModel;
+import com.ac.cooperativism.v1.api.model.input.TopicInput;
+import com.ac.cooperativism.v1.domain.service.TopicService;
+import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+@Api(tags = &quot;Topics&quot;)
+@RestController
+@RequestMapping(path = &quot;/v1/topics&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+public class TopicController {
+
+    private TopicService topicService;
+
+    @Autowired
+<span class="nc" id="L22">    public TopicController(TopicService topicService) {</span>
+<span class="nc" id="L23">        this.topicService = topicService;</span>
+<span class="nc" id="L24">    }</span>
+
+    @ApiOperation(&quot;Create a topic&quot;)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiResponses({
+            @ApiResponse(code = 201, message = &quot;Topic registered&quot;),
+    })
+    @PostMapping
+    public TopicModel create(@ApiParam(name = &quot;body&quot;, value = &quot;Representation of a topic&quot;)
+                             @RequestBody @Valid TopicInput topicInput) {
+<span class="nc" id="L34">        return topicService.create(topicInput);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

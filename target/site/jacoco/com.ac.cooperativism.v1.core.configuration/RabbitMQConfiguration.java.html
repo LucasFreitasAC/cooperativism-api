@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RabbitMQConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cooperativism-api</a> &gt; <a href="index.source.html" class="el_package">com.ac.cooperativism.v1.core.configuration</a> &gt; <span class="el_source">RabbitMQConfiguration.java</span></div><h1>RabbitMQConfiguration.java</h1><pre class="source lang-java linenums">package com.ac.cooperativism.v1.core.configuration;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RabbitMQConfiguration {
+
+    private VoteConfiguration voteConfiguration;
+
+    @Autowired
+<span class="nc" id="L21">    public RabbitMQConfiguration(VoteConfiguration voteConfiguration) {</span>
+<span class="nc" id="L22">        this.voteConfiguration = voteConfiguration;</span>
+<span class="nc" id="L23">    }</span>
+
+    @Bean
+    public Queue queue() {
+<span class="nc" id="L27">        return new Queue(voteConfiguration.getQueue(), true);</span>
+    }
+
+    @Bean
+    public DirectExchange exchange() {
+<span class="nc" id="L32">        return new DirectExchange(voteConfiguration.getExchange());</span>
+    }
+
+    @Bean
+    public Binding binding(Queue queue, DirectExchange exchange) {
+<span class="nc" id="L37">        return BindingBuilder.bind(queue)</span>
+<span class="nc" id="L38">                .to(exchange)</span>
+<span class="nc" id="L39">                .with(voteConfiguration.getRouting());</span>
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter messageConverter() {
+<span class="nc" id="L44">        return new Jackson2JsonMessageConverter();</span>
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory factory) {
+<span class="nc" id="L49">        RabbitTemplate rabbitTemplate = new RabbitTemplate(factory);</span>
+<span class="nc" id="L50">        rabbitTemplate.setMessageConverter(messageConverter());</span>
+<span class="nc" id="L51">        return rabbitTemplate;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

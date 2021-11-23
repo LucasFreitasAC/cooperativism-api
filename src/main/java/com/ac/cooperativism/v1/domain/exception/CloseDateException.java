@@ -9,6 +9,6 @@ public class CloseDateException extends BusinessException {
     }
 
     public CloseDateException() {
-        this(String.format("The date entered is less than the current date"));
+        this("The date entered is less than the current date");
     }
 }

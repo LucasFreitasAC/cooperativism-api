@@ -46,7 +46,7 @@ public class SessionServiceImpl implements SessionService {
     public SessionModel create(SessionInput sessionInput) {
         Session sessionToSave = sessionInputDisassembler.toDomainObject(sessionInput);
 
-        if (sessionToSave.getOpenDate().isAfter(sessionToSave.getCloseDate())) {
+        if (OffsetDateTime.now().isAfter(sessionToSave.getCloseDate())) {
             throw new CloseDateException();
         }
 
