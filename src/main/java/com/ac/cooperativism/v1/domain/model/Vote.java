@@ -23,7 +23,7 @@ public class Vote {
     private Topic topic;
 
     @Column(nullable = false)
-    private String document;
+    private Long document;
 
     @Column(nullable = false)
     private Boolean vote;

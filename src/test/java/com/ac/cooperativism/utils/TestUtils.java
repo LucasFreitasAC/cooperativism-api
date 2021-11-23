@@ -109,7 +109,7 @@ public class TestUtils {
 
     public static Vote buildVotetoSave() {
         return Vote.builder()
-                .document("123.432.814-07")
+                .document(12343281407L)
                 .vote(true)
                 .topic(Topic.builder()
                         .id(1L)
@@ -120,7 +120,7 @@ public class TestUtils {
     public static Vote buildSavedVote() {
         return Vote.builder()
                 .id(1L)
-                .document("123.432.814-07")
+                .document(12343281407L)
                 .vote(true)
                 .topic(Topic.builder()
                         .id(1L)
@@ -148,7 +148,7 @@ public class TestUtils {
     public static VoteModel buildVoteModel() {
         return VoteModel.builder()
                 .id(1L)
-                .document("123.432.814-07")
+                .document(12343281407L)
                 .vote(true)
                 .topic(buildTopicModel())
                 .build();

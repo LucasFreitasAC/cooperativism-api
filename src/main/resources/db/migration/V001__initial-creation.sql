@@ -8,6 +8,7 @@ CREATE TABLE `cooperativism_db`.`sessions` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `close_date` datetime NOT NULL,
   `open_date` datetime NOT NULL,
+  `send_message` bit(1) NOT NULL,
   `topic_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_rn7otfesgfgkr2ukphmkew8mc` (`topic_id`),
@@ -16,7 +17,7 @@ CREATE TABLE `cooperativism_db`.`sessions` (
 
 CREATE TABLE `cooperativism_db`.`votes` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `document` varchar(255) NOT NULL,
+  `document` bigint NOT NULL,
   `vote` bit(1) NOT NULL,
   `topic_id` bigint NOT NULL,
   PRIMARY KEY (`id`),

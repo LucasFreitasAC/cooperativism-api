@@ -52,9 +52,9 @@ public class VoteServiceImplTest {
     }
 
     @Test
-    public void createVote() {
+    public void createVoteShouldReturnVoteModel() {
         //given
-        String document = "123.432.814-07";
+        Long document = 12343281407L;
         VoteInput voteInput = TestUtils.buildCreateVoteInput();
         Vote voteToSave = TestUtils.buildVotetoSave();
         Topic savedTopic = TestUtils.buildSavedTopicWithSession();
@@ -76,7 +76,7 @@ public class VoteServiceImplTest {
         assertNotEquals(null, voteModel);
         assertEquals(1L, voteModel.getId());
         assertEquals(true, voteModel.getVote());
-        assertEquals("123.432.814-07", voteModel.getDocument());
+        assertEquals(document, voteModel.getDocument());
         assertEquals(1L, voteModel.getTopic().getId());
         assertEquals("Topic for internet voting CLIG", voteModel.getTopic().getDescription());
     }
@@ -85,7 +85,7 @@ public class VoteServiceImplTest {
     public void getAlreadyVotedExceptionWhenAssociateAlreadyVotedForTopic() {
         //given
         Long topicId = 1L;
-        String document = "123.432.814-07";
+        Long document = 12343281407L;
         VoteInput voteInput = TestUtils.buildCreateVoteInput();
         Vote voteToSave = TestUtils.buildVotetoSave();
         Vote savedVote = TestUtils.buildSavedVote();
@@ -109,7 +109,7 @@ public class VoteServiceImplTest {
     public void getSessionNotOpenedExceptionWhenSessionNotOpenedForTopic() {
         //given
         Long topicId = 1L;
-        String document = "123.432.814-07";
+        Long document = 12343281407L;
         VoteInput voteInput = TestUtils.buildCreateVoteInput();
         Vote voteToSave = TestUtils.buildVotetoSave();
         Topic savedTopic = TestUtils.buildSavedTopicWithoutSession();
@@ -134,7 +134,7 @@ public class VoteServiceImplTest {
     public void getCloseDateEndedSessionExceptionWhenCloseDateEnded() {
         //given
         Long topicId = 1L;
-        String document = "123.432.814-07";
+        Long document = 12343281407L;
         VoteInput voteInput = TestUtils.buildCreateVoteInput();
         Vote voteToSave = TestUtils.buildVotetoSave();
         Topic savedTopic = TestUtils.buildSavedTopicWithSession();
@@ -158,7 +158,7 @@ public class VoteServiceImplTest {
     }
 
     @Test
-    public void countVotes() {
+    public void countVotesShouldReturnCountVoteModel() {
         //given
         Long topicId = 1L;
         Topic savedTopic = TestUtils.buildSavedTopicWithSession();

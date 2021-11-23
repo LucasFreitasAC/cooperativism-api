@@ -25,6 +25,9 @@ public class Session {
     @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime closeDate;
 
+    @Column(name = "send_message", nullable = false)
+    private Boolean sendMessage = Boolean.FALSE;
+
     @OneToOne(optional = false)
     @JoinColumn(name = "topic_id", referencedColumnName = "id", nullable = false)
     private Topic topic;

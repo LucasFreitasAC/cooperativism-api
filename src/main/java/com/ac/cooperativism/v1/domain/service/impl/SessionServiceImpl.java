@@ -9,13 +9,19 @@ import com.ac.cooperativism.v1.domain.exception.CloseDateException;
 import com.ac.cooperativism.v1.domain.exception.SessionNotFoundException;
 import com.ac.cooperativism.v1.domain.model.Session;
 import com.ac.cooperativism.v1.domain.model.Topic;
+import com.ac.cooperativism.v1.domain.model.Vote;
 import com.ac.cooperativism.v1.domain.repository.SessionRepository;
+import com.ac.cooperativism.v1.domain.repository.VoteRepository;
 import com.ac.cooperativism.v1.domain.service.SessionService;
 import com.ac.cooperativism.v1.domain.service.TopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -56,6 +62,16 @@ public class SessionServiceImpl implements SessionService {
             log.error("It is only possible to create one session per topic.");
             throw new BusinessException("It is only possible to create one session per topic.");
         }
+    }
+
+    public List<Session> searchCloseDateEnded() {
+        List<Session> openDateSession = sessionRepository.findBySendMessageFalseAndCloseDateLessThan(OffsetDateTime.now());
+        return openDateSession.stream().map(this::updateSessionAndReturnVote).collect(Collectors.toList());
+    }
+
+    private Session updateSessionAndReturnVote(Session session) {
+        session.setSendMessage(Boolean.TRUE);
+        return sessionRepository.save(session);
     }
 
     public Session searchOrFail(Long sessionId) {

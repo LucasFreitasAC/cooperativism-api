@@ -8,7 +8,7 @@ public class AlreadyVotedException extends BusinessException {
         super(mensagem);
     }
 
-    public AlreadyVotedException(String document, Long topicId) {
-        this(String.format("The associate with document %s has already voted for topic %d", document, topicId));
+    public AlreadyVotedException(Long document, Long topicId) {
+        this(String.format("The associate with document %d has already voted for topic %d", document, topicId));
     }
 }

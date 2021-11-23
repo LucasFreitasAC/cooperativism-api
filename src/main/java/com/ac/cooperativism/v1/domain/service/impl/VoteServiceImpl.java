@@ -4,11 +4,13 @@ import com.ac.cooperativism.v1.api.assembler.VoteInputDisassembler;
 import com.ac.cooperativism.v1.api.assembler.VoteModelAssembler;
 import com.ac.cooperativism.v1.api.model.CountVoteModel;
 import com.ac.cooperativism.v1.api.model.TopicModel;
+import com.ac.cooperativism.v1.api.model.UserStatusModel;
 import com.ac.cooperativism.v1.api.model.VoteModel;
 import com.ac.cooperativism.v1.api.model.input.VoteInput;
 import com.ac.cooperativism.v1.domain.exception.AlreadyVotedException;
 import com.ac.cooperativism.v1.domain.exception.CloseDateEndedSessionException;
 import com.ac.cooperativism.v1.domain.exception.SessionNotOpenedException;
+import com.ac.cooperativism.v1.domain.exception.UserInvalidException;
 import com.ac.cooperativism.v1.domain.model.Session;
 import com.ac.cooperativism.v1.domain.model.Topic;
 import com.ac.cooperativism.v1.domain.model.Vote;
@@ -16,6 +18,7 @@ import com.ac.cooperativism.v1.domain.repository.VoteRepository;
 import com.ac.cooperativism.v1.domain.service.SessionService;
 import com.ac.cooperativism.v1.domain.service.TopicService;
 import com.ac.cooperativism.v1.domain.service.VoteService;
+import com.ac.cooperativism.v1.domain.service.client.UserClientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,22 +39,30 @@ public class VoteServiceImpl implements VoteService {
 
     private TopicService topicService;
 
+    private UserClientService userService;
+
     @Autowired
-    public VoteServiceImpl(VoteRepository voteRepository, VoteInputDisassembler voteInputDisassembler, SessionService sessionService, VoteModelAssembler voteModelAssembler, TopicService topicService) {
+    public VoteServiceImpl(VoteRepository voteRepository, VoteInputDisassembler voteInputDisassembler, SessionService sessionService, VoteModelAssembler voteModelAssembler, TopicService topicService, UserClientService userService) {
         this.voteRepository = voteRepository;
         this.voteInputDisassembler = voteInputDisassembler;
         this.sessionService = sessionService;
         this.voteModelAssembler = voteModelAssembler;
         this.topicService = topicService;
+        this.userService = userService;
     }
 
-    public VoteModel create(String document, VoteInput voteInput) {
+    public VoteModel create(Long document, VoteInput voteInput) {
         Vote voteToSave = voteInputDisassembler.toDomainObject(voteInput);
         Vote alreadyVoted = voteRepository.findByTopicAndDocument(voteToSave.getTopic(), document);
 
         if (alreadyVoted != null) {
             log.error("The associate with document {} has already voted for topic {}", document, voteToSave.getTopic().getId());
             throw new AlreadyVotedException(document, voteToSave.getTopic().getId());
+        }
+        UserStatusModel userStatusModel = userService.validateUserDocument(document);
+
+        if(userStatusModel.getStatus().equalsIgnoreCase("UNABLE_TO_VOTE")) {
+            throw new UserInvalidException(document);
         }
         Topic savedTopic = topicService.searchOrFail(voteToSave.getTopic().getId());
 
