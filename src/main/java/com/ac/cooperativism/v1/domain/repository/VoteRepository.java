@@ -12,7 +12,7 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
 
     Long countByTopicAndVoteFalse(Topic topic);
 
-    Vote findByTopicAndDocument(Topic topic, Long document);
+    Vote findByTopicAndDocument(Topic topic, String document);
 
     Vote findByTopic(Topic topic);
 

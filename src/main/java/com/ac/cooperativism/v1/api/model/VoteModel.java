@@ -11,6 +11,6 @@ public class VoteModel {
 
     private Long id;
     private TopicModel topic;
-    private Long document;
+    private String document;
     private Boolean vote;
 }

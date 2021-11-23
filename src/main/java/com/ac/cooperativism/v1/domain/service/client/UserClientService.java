@@ -23,7 +23,7 @@ public class UserClientService {
         this.voteConfiguration = voteConfiguration;
     }
 
-    public UserStatusModel validateUserDocument(Long document) {
+    public UserStatusModel validateUserDocument(String document) {
         try {
             URI uri = URI.create(String.format(voteConfiguration.getUserClientUrl(), document));
             return restTemplate.getForObject(uri, UserStatusModel.class);

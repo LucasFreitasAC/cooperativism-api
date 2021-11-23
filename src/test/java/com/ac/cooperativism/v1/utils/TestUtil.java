@@ -68,7 +68,6 @@ public class TestUtil {
 
     public static Session buildSession() {
         return Session.builder()
-                .openDate(OffsetDateTime.now())
                 .closeDate(OffsetDateTime.now().plusMinutes(1))
                 .topic(buildTopic())
                 .build();
@@ -112,6 +111,25 @@ public class TestUtil {
                 .build();
     }
 
+    public static Topic buildCreateWrongTopic() {
+        return Topic.builder()
+                .description(null)
+                .build();
+    }
+
+    public static Session buildCreateWrongSession() {
+        return Session.builder()
+                .topic(null)
+                .build();
+    }
+
+    public static Vote buildCreateWrongVote() {
+        return Vote.builder()
+                .vote(null)
+                .topic(null)
+                .build();
+    }
+
     public static VoteInput buildCreateVoteInput() {
         return VoteInput.builder()
                 .vote(true)
@@ -123,7 +141,7 @@ public class TestUtil {
 
     public static Vote buildVoteToSave() {
         return Vote.builder()
-                .document(12343281407L)
+                .document("12343281407")
                 .vote(true)
                 .topic(Topic.builder()
                         .id(1L)
@@ -134,7 +152,7 @@ public class TestUtil {
     public static Vote buildSavedVote() {
         return Vote.builder()
                 .id(1L)
-                .document(12343281407L)
+                .document("12343281407")
                 .vote(true)
                 .topic(Topic.builder()
                         .id(1L)
@@ -162,7 +180,7 @@ public class TestUtil {
     public static VoteModel buildVoteModel() {
         return VoteModel.builder()
                 .id(1L)
-                .document(12343281407L)
+                .document("12343281407")
                 .vote(true)
                 .topic(buildTopicModel())
                 .build();
@@ -181,15 +199,105 @@ public class TestUtil {
     }
 
     public static List<Session> buildSessionListCloseDateEnded() {
-//        Session session = Session.builder()
-//                .id(1L)
-//                .openDate(OffsetDateTime.now())
-//                .closeDate(OffsetDateTime.now().plusMinutes(1))
-//                .topic(buildTopic())
-//                .sendMessage(Boolean.TRUE)
-//                .build();
-
         return new ArrayList(List.of(buildSavedSessionSendMessageFalse()));
+    }
+
+    public static Iterable<Topic> populateTopicTable() {
+        List<Topic> topics = new ArrayList<>();
+
+        topics.add(Topic.builder()
+                .description("Topic for internet voting CLIG")
+                .build());
+
+        topics.add(Topic.builder()
+                .description("Topic to cover parking lot")
+                .build());
+
+        topics.add(Topic.builder()
+                .description("Topic to put electric fence")
+                .build());
+
+        topics.add(Topic.builder()
+                .description("Thread to allow animals to walk without being on lap")
+                .build());
+
+        return topics;
+    }
+
+    public static Iterable<Session> populateSessionTable() {
+        List<Session> sessions = new ArrayList<>();
+
+        sessions.add(Session.builder()
+                .id(1L)
+                .openDate(OffsetDateTime.now())
+                .closeDate(OffsetDateTime.now().plusHours(1L))
+                .topic(Topic.builder().id(1L).build())
+                .sendMessage(Boolean.FALSE)
+                .build());
+
+        sessions.add(Session.builder()
+                .id(2L)
+                .openDate(OffsetDateTime.now())
+                .closeDate(OffsetDateTime.now().plusHours(1L))
+                .topic(Topic.builder().id(2L).build())
+                .sendMessage(Boolean.FALSE)
+                .build());
+
+        sessions.add(Session.builder()
+                .id(3L)
+                .openDate(OffsetDateTime.now())
+                .closeDate(OffsetDateTime.now().plusHours(1L))
+                .topic(Topic.builder().id(3L).build())
+                .sendMessage(Boolean.FALSE)
+                .build());
+
+        sessions.add(Session.builder()
+                .id(4L)
+                .openDate(OffsetDateTime.now())
+                .closeDate(OffsetDateTime.now().plusHours(1L))
+                .topic(Topic.builder().id(4L).build())
+                .sendMessage(Boolean.FALSE)
+                .build());
+
+        return sessions;
+    }
+
+    public static Iterable<Vote> populateVoteTable() {
+        List<Vote> votes = new ArrayList<>();
+
+        votes.add(Vote.builder()
+                .document("12343281407")
+                .vote(true)
+                .topic(Topic.builder()
+                        .id(1L)
+                        .build())
+                .build());
+
+        votes.add(Vote.builder()
+                .document("12341321407")
+                .vote(true)
+                .topic(Topic.builder()
+                        .id(1L)
+                        .build())
+                .build());
+
+        votes.add(Vote.builder()
+                .document("12343281176")
+                .vote(false)
+                .topic(Topic.builder()
+                        .id(1L)
+                        .build())
+                .build());
+
+        votes.add(Vote.builder()
+                .document("52344281007")
+                .vote(true)
+                .topic(Topic.builder()
+                        .id(1L)
+                        .build())
+                .build());
+
+        return votes;
     }
 
 }

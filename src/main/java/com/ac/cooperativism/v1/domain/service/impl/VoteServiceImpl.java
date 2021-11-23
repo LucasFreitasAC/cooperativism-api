@@ -51,7 +51,7 @@ public class VoteServiceImpl implements VoteService {
         this.userService = userService;
     }
 
-    public VoteModel create(Long document, VoteInput voteInput) {
+    public VoteModel create(String document, VoteInput voteInput) {
         Vote voteToSave = voteInputDisassembler.toDomainObject(voteInput);
         Vote alreadyVoted = voteRepository.findByTopicAndDocument(voteToSave.getTopic(), document);
 

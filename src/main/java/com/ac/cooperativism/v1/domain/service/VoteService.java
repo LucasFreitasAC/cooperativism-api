@@ -6,7 +6,7 @@ import com.ac.cooperativism.v1.api.model.input.VoteInput;
 
 public interface VoteService {
 
-    public VoteModel create(Long document, VoteInput voteInput);
+    public VoteModel create(String document, VoteInput voteInput);
 
     public CountVoteModel countVotes(Long topicId);
 

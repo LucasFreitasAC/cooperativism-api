@@ -56,7 +56,7 @@ public class VoteServiceImplTest {
     @Test
     public void createVoteShouldReturnVoteModel() {
         //given
-        Long document = 12343281407L;
+        String document = "12343281407";
         VoteInput voteInput = TestUtil.buildCreateVoteInput();
         Vote voteToSave = TestUtil.buildVoteToSave();
         Topic savedTopic = TestUtil.buildSavedTopicWithSession();
@@ -89,7 +89,7 @@ public class VoteServiceImplTest {
     public void getAlreadyVotedExceptionWhenAssociateAlreadyVotedForTopic() {
         //given
         Long topicId = 1L;
-        Long document = 12343281407L;
+        String document = "12343281407";
         VoteInput voteInput = TestUtil.buildCreateVoteInput();
         Vote voteToSave = TestUtil.buildVoteToSave();
         Vote savedVote = TestUtil.buildSavedVote();
@@ -112,11 +112,11 @@ public class VoteServiceImplTest {
     @Test
     public void getUserInvalidExceptionWhenAssociateUnableToVote() {
         //given
-        Long document = 12343281407L;
+        String document = "12343281407";
         VoteInput voteInput = TestUtil.buildCreateVoteInput();
         Vote voteToSave = TestUtil.buildVoteToSave();
         UserStatusModel userStatusModel = TestUtil.buildUserStatusModelUnable();
-        String expectedMessage = String.format("Document %d is not available for voting", document);
+        String expectedMessage = String.format("Document %s is not available for voting", document);
 
         when(voteInputDisassembler.toDomainObject(voteInput)).thenReturn(voteToSave);
         when(voteRepository.findByTopicAndDocument(voteToSave.getTopic(), document)).thenReturn(null);
@@ -137,7 +137,7 @@ public class VoteServiceImplTest {
     public void getSessionNotOpenedExceptionWhenSessionNotOpenedForTopic() {
         //given
         Long topicId = 1L;
-        Long document = 12343281407L;
+        String document = "12343281407";
         VoteInput voteInput = TestUtil.buildCreateVoteInput();
         Vote voteToSave = TestUtil.buildVoteToSave();
         Topic savedTopic = TestUtil.buildSavedTopicWithoutSession();
@@ -164,7 +164,7 @@ public class VoteServiceImplTest {
     public void getCloseDateEndedSessionExceptionWhenCloseDateEnded() {
         //given
         Long topicId = 1L;
-        Long document = 12343281407L;
+        String document = "12343281407";
         VoteInput voteInput = TestUtil.buildCreateVoteInput();
         Vote voteToSave = TestUtil.buildVoteToSave();
         Topic savedTopic = TestUtil.buildSavedTopicWithSession();

@@ -30,7 +30,7 @@ public class VoteController {
     })
     @PostMapping("/{document}")
     public VoteModel create(@ApiParam(value = "Membership Document", example = "12334587632")
-                            @PathVariable Long document,
+                            @PathVariable String document,
                             @ApiParam(name = "body", value = "Representation of a vote")
                             @RequestBody @Valid VoteInput voteInput) {
         return voteService.create(document, voteInput);
