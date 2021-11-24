@@ -1,0 +1,27 @@
+version: "3.9"
+
+networks:
+  cooperativism-network:
+    driver: bridge
+
+services:
+  cooperativism-mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+    networks:
+      - cooperativism-network
+
+  cooperativism-api:
+    image: cooperativism-api
+    command: ["/wait-for-it.sh", "cooperativism-mysql:3306", "-t", "30", "--", "java", "-jar", "cooperativism-api.jar"]
+    environment:
+      DB_HOST: cooperativism-mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - cooperativism-network
+    depends_on:
+      - cooperativism-mysql
